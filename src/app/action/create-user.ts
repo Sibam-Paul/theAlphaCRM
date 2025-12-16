@@ -1,39 +1,50 @@
 'use server'
 
-import { createClient } from '@supabase/supabase-js'
+// 1. Rename this import to avoid conflict
+import { createClient as createSupabaseAdmin } from '@supabase/supabase-js' 
 import { revalidatePath } from 'next/cache'
 import { db } from '@/db' 
 import { users } from '@/db/schema' 
+import { eq } from "drizzle-orm" 
+import { createClient as createSupabaseServer } from "@/utils/supabase/server" 
 
 export async function createUser(formData: FormData) {
-  // 1. Setup Admin Client
-  const supabaseAdmin = createClient(
+  const supabase = await createSupabaseServer()
+  const { data: { user } } = await supabase.auth.getUser()
+  
+  if (!user) return { success: false, error: "Unauthorized" }
+
+  const dbUser = await db.select({ role: users.role })
+    .from(users)
+    .where(eq(users.id, user.id))
+
+  if (dbUser[0]?.role !== 'admin') {
+     return { success: false, error: "Unauthorized: Admins only." }
+  }
+  
+  const supabaseAdmin = createSupabaseAdmin(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
     { auth: { autoRefreshToken: false, persistSession: false } }
   )
 
-  // 2. Extract Data
+  // Extract Data
   const email = formData.get('email') as string
   const role = formData.get('role') as string
   const name = formData.get('name') as string
   const mobileNumber = formData.get('mobileNumber') as string
 
-  // --- PASSWORD GENERATION LOGIC ---
-  // 1. Remove spaces from name (e.g., "John Doe" becomes "JohnDoe")
-  const cleanName = name.replace(/\s/g, '');
-  // 2. Take first 4 digits of mobile
+  // Generate Password
+  const cleanName = name.split(' ')[0];
   const mobilePrefix = mobileNumber.substring(0, 4);
-  // 3. Combine: Name + @ + MobilePrefix
-  const password = `${cleanName}@${mobilePrefix}`;
-  // ---------------------------------
+  const password = `${cleanName.toLocaleLowerCase()}@${mobilePrefix}`;
 
-  console.log("GENERATED PASSWORD:", password) // Helpful for debugging
+  console.log("GENERATED PASSWORD:", password) 
 
-  // 3. Create Auth User (Supabase)
+  // Create Auth User
   const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
     email,
-    password: password, // Use the generated password
+    password: password,
     email_confirm: true,
     user_metadata: { name: name }
   })
@@ -42,7 +53,7 @@ export async function createUser(formData: FormData) {
     return { success: false, error: authError.message }
   }
 
-  // 4. Create Public User Record (Drizzle)
+  // Create Public User Record
   if (authData.user) {
     try {
       await db.insert(users).values({
@@ -55,7 +66,7 @@ export async function createUser(formData: FormData) {
     } catch (dbError: any) {
       console.error('DB Error:', dbError)
       
-      // Cleanup: If DB fails, delete the Auth user
+      // Cleanup: Delete the auth user if DB fails
       await supabaseAdmin.auth.admin.deleteUser(authData.user.id)
       
       if (dbError.code === '23505') {

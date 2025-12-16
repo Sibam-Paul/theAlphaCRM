@@ -45,15 +45,9 @@ export function AddUserDialog() {
           Add User
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-106.25">
         <DialogHeader>
-          <DialogTitle>Add New Team Member</DialogTitle>
-          {/* UPDATED DESCRIPTION TO MATCH NEW LOGIC */}
-          <DialogDescription>
-             Password format: <b>Name@First4Digits</b>
-             <br />
-             (e.g., if Name is "Amit" & Mobile is "9988...", pass is <b>Amit@9988</b>)
-          </DialogDescription>
+          <DialogTitle>Add New Team Member</DialogTitle>         
         </DialogHeader>
         <form onSubmit={handleSubmit} className="grid gap-4 py-4">
           
@@ -62,7 +56,7 @@ export function AddUserDialog() {
             <Input 
               id="name" 
               name="name" 
-              placeholder="John Doe" 
+              placeholder="Enter First Name" 
               className="col-span-3" 
               required 
             />
@@ -74,7 +68,7 @@ export function AddUserDialog() {
               id="email" 
               name="email" 
               type="email" 
-              placeholder="john@crm.com" 
+              placeholder="Enter Email Address" 
               className="col-span-3" 
               required 
             />
@@ -85,7 +79,7 @@ export function AddUserDialog() {
             <Input 
               id="mobileNumber" 
               name="mobileNumber" 
-              placeholder="9876543210" 
+              placeholder="Mobile Number" 
               className="col-span-3" 
               required 
             />
