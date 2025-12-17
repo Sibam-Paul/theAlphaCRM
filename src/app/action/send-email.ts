@@ -24,7 +24,6 @@ export async function sendEmail(prevState: EmailState, formData: FormData): Prom
   }
 
   const fromAddress = `${fromPrefix}@${process.env.MAILEROO_DOMAIN}`
-  console.log(`📨 Sending from ${fromAddress} to ${to}...`)
 
   try {
     const response = await fetch('https://smtp.maileroo.com/api/v2/emails', {

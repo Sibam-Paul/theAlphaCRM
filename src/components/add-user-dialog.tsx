@@ -40,12 +40,12 @@ export function AddUserDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" className="w-full justify-start gap-3 px-3 text-muted-foreground hover:text-foreground">
+        <Button className="w-full justify-start gap-3 px-3 text-muted-foreground hover:text-foreground bg-inherit hover:bg-[#222222] ">
           <UserPlus className="w-5 h-5" />
           Add User
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-106.25">
+      <DialogContent className="sm:max-w-106.25 bg-[#171717] border border-[#2A2A2A]">
         <DialogHeader>
           <DialogTitle>Add New Team Member</DialogTitle>         
         </DialogHeader>
@@ -57,7 +57,7 @@ export function AddUserDialog() {
               id="name" 
               name="name" 
               placeholder="Enter First Name" 
-              className="col-span-3" 
+              className="col-span-3 border-gray-700" 
               required 
             />
           </div>
@@ -69,7 +69,7 @@ export function AddUserDialog() {
               name="email" 
               type="email" 
               placeholder="Enter Email Address" 
-              className="col-span-3" 
+              className="col-span-3 border-gray-700" 
               required 
             />
           </div>
@@ -80,7 +80,7 @@ export function AddUserDialog() {
               id="mobileNumber" 
               name="mobileNumber" 
               placeholder="Mobile Number" 
-              className="col-span-3" 
+              className="col-span-3 border-gray-700" 
               required 
             />
           </div>
@@ -90,7 +90,7 @@ export function AddUserDialog() {
             <select 
               name="role" 
               id="role"
-              className="col-span-3 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              className="col-span-3 flex h-10 w-full rounded-md border border-gray-700 bg-[#171717] px-3 py-2 text-sm"
             >
                 <option value="user">User</option>
                 <option value="admin">Admin</option>

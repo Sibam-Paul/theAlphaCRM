@@ -34,20 +34,18 @@ export function DashboardSidebar({ userEmail, userRole }: DashboardSidebarProps)
   }
 
   return (
-    <aside className="w-64 border-r border-border bg-card flex flex-col h-full">
-      <div className="p-6 border-b border-border">
-        <h1 className="text-xl font-bold text-foreground">CRM Dashboard</h1>
-        <p className="text-sm text-muted-foreground mt-1">Manage your business</p>
+    <aside className="w-64 border-r border-border  flex flex-col h-full bg-[#171717]">
+      <div className="p-4 border border-[#2A2A2A]">
+        <h1 className="text-xl font-bold text-foreground">TheAlphaCRM</h1>
       </div>
 
-      <nav className="flex-1 p-4 space-y-2">
-        <div className="text-xs font-semibold text-muted-foreground uppercase mb-2 px-3">Menu</div>
-        
+      <nav className="flex-1 p-4 space-y-2 border border-[#2A2A2A] overflow-y-auto">
+
         {/* Standard Links */}
         {navItems.map((item) => {
           const Icon = item.icon
           const isActive = pathname === item.href
-          
+
           return (
             <Link
               key={item.name}
@@ -69,7 +67,7 @@ export function DashboardSidebar({ userEmail, userRole }: DashboardSidebarProps)
           <>
             <div className="my-4 border-t border-border/50" />
             <div className="text-xs font-semibold text-muted-foreground uppercase mb-2 px-3">Admin Actions</div>
-            
+
             {/* The Modal Trigger is here */}
             <AddUserDialog />
           </>
@@ -77,9 +75,9 @@ export function DashboardSidebar({ userEmail, userRole }: DashboardSidebarProps)
 
       </nav>
 
-      <div className="p-4 border-t border-border">
+      <div className="p-4 border border-[#2A2A2A] flex items-center justify-between">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground font-semibold">
+          <div className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center text-foreground font-semibold ">
             {userEmail?.substring(0, 2).toUpperCase()}
           </div>
           <div className="flex-1 min-w-0">
@@ -87,10 +85,17 @@ export function DashboardSidebar({ userEmail, userRole }: DashboardSidebarProps)
             <p className="text-xs text-muted-foreground truncate">{userEmail}</p>
           </div>
         </div>
-        
-        <Button variant="outline" size="sm" className="w-full gap-2  cursor-pointer hover:text-red-300" onClick={handleSignOut}>
-            <LogOut className="w-4 h-4" />
-            Sign Out
+
+        <Button
+          variant="outline"
+          size="sm"
+          className="gap-2 cursor-pointer hover:text-red-600 bg-[#171717] relative group"
+          onClick={handleSignOut}
+        >
+          <LogOut className="w-4 h-4" />
+          <span className="absolute invisible group-hover:visible bg-gray-800 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap top-0 -right-20 z-20 shadow-lg pointer-events-none">
+            Log out
+          </span>
         </Button>
       </div>
     </aside>

@@ -35,13 +35,13 @@ export default function DashboardPage() {
   ]
 
   return (
-    <div className="p-8">
+    <div className="p-8 bg-[#121212] min-h-full">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-foreground mb-2">Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back! Here's what's happening with your business today.</p>
+        <p className="text-muted-foreground">Welcome back AlphaOne!</p>
       </div>
 
-      {/* Stats Grid */}
+      {/* Stats Grid */} 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {stats.map((stat) => {
           const Icon = stat.icon

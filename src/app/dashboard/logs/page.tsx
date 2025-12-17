@@ -56,7 +56,7 @@ const getLogIcon = (type: string) => {
 
 export default function LogsPage() {
   return (
-    <div className="p-8">
+    <div className="p-8 bg-[#121212]">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-foreground mb-2">Activity Logs</h1>
         <p className="text-muted-foreground">View system activity and user actions</p>
@@ -72,7 +72,7 @@ export default function LogsPage() {
             {logs.map((log) => (
               <div
                 key={log.id}
-                className="flex items-start gap-4 p-4 rounded-lg border border-border hover:bg-muted/50 transition-colors"
+                className="flex items-start gap-4 p-4 rounded-lg border border-border hover transition-colors"
               >
                 <div className="mt-0.5">{getLogIcon(log.type)}</div>
                 <div className="flex-1 min-w-0">

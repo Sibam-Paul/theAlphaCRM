@@ -24,11 +24,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#171717] p-4">
       <Card className="w-full max-w-md border-border/50">
         <CardHeader className="space-y-2 text-center">
-          <CardTitle className="text-3xl font-bold">Welcome Back</CardTitle>
-          <CardDescription>Sign in to your CRM account</CardDescription>
+          <CardTitle className="text-3xl font-bold">Welcome to TheAlphaCRM</CardTitle>
+          <CardDescription>Sign in to your AlphaCRM account</CardDescription>
         </CardHeader>
         <CardContent>
           <form action={handleSubmit} className="space-y-4">
@@ -40,7 +40,7 @@ export default function LoginPage() {
                   name="email"
                   type="email"
                   placeholder="admin@crm.com"
-                  className="pl-10"
+                  className="pl-10 border-gray-700"
                   required
                 />
               </div>
@@ -54,7 +54,7 @@ export default function LoginPage() {
                   name="password"
                   type="password"
                   placeholder="••••••••"
-                  className="pl-10"
+                  className="pl-10 border-gray-700"
                   required
                 />
               </div>

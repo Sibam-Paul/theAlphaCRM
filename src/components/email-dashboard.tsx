@@ -74,7 +74,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
   }
 
   return (
-    <div className="p-8 h-[calc(100vh-4rem)] overflow-y-auto">
+    <div className="p-8 h-full flex flex-col overflow-y-auto bg-[#121212]">
       {/* Email Composer Section */}
       <Card className="mb-8 border-border/50">
         <CardHeader>
@@ -119,48 +119,50 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
           <form ref={formRef} action={formAction} className="space-y-4 *:m-1 *:p-3">
             
             <div className="gap-4 *:mb-4">
-                {/* FROM INPUT (Added to match logic) */}
+                
+
+                {/* TO INPUT (Added to match logic) */}
                 <div>
-                    <label className="text-sm font-medium text-foreground block mb-2">From (Prefix)</label>
+                    <label className="text-sm font-medium text-foreground block mb-2">To</label>
+                    <Input 
+                        name="to" 
+                        type="email" 
+                        placeholder="client@example.com" 
+                        className="bg-background  border-gray-700" 
+                        required 
+                    />
+                </div>
+            </div>
+
+            {/* FROM INPUT (Added to match logic) */}
+                <div>
+                    <label className="text-sm font-medium text-foreground block mb-2">From</label>
                     <div className="flex items-center gap-2">
                         <Input 
                             name="fromPrefix" 
                             placeholder="noreply" 
                             defaultValue="noreply"
-                            className="bg-background border-white " 
+                            className="bg-background border-gray-700 hover:bg-[#1A1A1A]" 
                             required
                         />
                          
                     </div>
                 </div>
 
-                {/* TO INPUT (Added to match logic) */}
-                <div>
-                    <label className="text-sm font-medium text-foreground block mb-2">To (Recipient)</label>
-                    <Input 
-                        name="to" 
-                        type="email" 
-                        placeholder="client@example.com" 
-                        className="bg-background border-white" 
-                        required 
-                    />
-                </div>
-            </div>
-
             <div>
               <label className="text-sm font-medium text-foreground block mb-2">Subject</label>
-              <Input name="subject" placeholder="Email subject" className="bg-background border-white" required />
+              <Input name="subject" placeholder="Email subject" className="bg-background border-gray-700" required />
             </div>
 
             <div>
               <label className="text-sm font-medium text-foreground block mb-2">Message</label>
-              <Textarea name="message" placeholder="Email message (HTML supported)" rows={6} className="bg-background resize-none border-white" required />
+              <Textarea name="message" placeholder="Enter message....." rows={6} className="bg-background resize-none  border-gray-700" required />
             </div>
 
             <Button
               type="submit"
               disabled={isPending}
-              className="w-full bg-foreground/10 hover:bg-foreground/20 text-foreground border border-foreground/20"
+              className="w-full bg-foreground/10 hover:bg-foreground/20 text-foreground  border-gray-700"
               size="lg"
             >
               {isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
@@ -209,7 +211,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
             {/* Email List */}
             <div className="flex-1 min-w-0">
               {/* Search and Actions Bar */}
-              <div className="flex items-center gap-2 mb-4 pb-4 border-b border-border">
+              <div className="flex items-center gap-2 mb-4 pb-4 border-white/5">
                 <Button
                   variant="ghost"
                   size="icon"
@@ -218,9 +220,9 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                 >
                   {isSidebarCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
                 </Button>
-                <div className="relative flex-1">
+                <div className="relative flex-1 border border-w rounded-md">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input placeholder="Search emails..." className="pl-9 bg-background border-border" />
+                  <Input placeholder="Search emails..." className="pl-9 bg-background border border-grey-700" />
                 </div>
               </div>
 
