@@ -31,7 +31,6 @@ export default async function DashboardLayout({
 
   return (
     <div className="flex h-screen bg-background">
-      {/* 3. Pass the REAL role to the sidebar */}
       <DashboardSidebar 
         userEmail={user.email || ""} 
         userRole={userRole} 

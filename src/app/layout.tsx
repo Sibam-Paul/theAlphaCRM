@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: 'CRM',
-  description: 'CRM Dashboard ',
+  description: 'CRM Dashboard',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

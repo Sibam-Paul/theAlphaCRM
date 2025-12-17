@@ -88,7 +88,7 @@ export function DashboardSidebar({ userEmail, userRole }: DashboardSidebarProps)
           </div>
         </div>
         
-        <Button variant="outline" size="sm" className="w-full gap-2" onClick={handleSignOut}>
+        <Button variant="outline" size="sm" className="w-full gap-2  cursor-pointer hover:text-red-300" onClick={handleSignOut}>
             <LogOut className="w-4 h-4" />
             Sign Out
         </Button>

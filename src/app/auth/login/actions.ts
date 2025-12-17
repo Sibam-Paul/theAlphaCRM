@@ -18,6 +18,7 @@ export async function login(formData: FormData) {
   if (error) {
     return redirect('/auth/login?error=Could not authenticate')
   }
+  //  add a red text - invalid credentials
 
   revalidatePath('/', 'layout')
   redirect('/dashboard')
