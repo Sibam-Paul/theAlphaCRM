@@ -39,8 +39,6 @@ export async function createUser(formData: FormData) {
   const mobilePrefix = mobileNumber.substring(0, 4);
   const password = `${cleanName.toLowerCase()}@${mobilePrefix}`;
 
-  console.log("GENERATED PASSWORD:", password) 
-
   // Create Auth User
   const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
     email,
