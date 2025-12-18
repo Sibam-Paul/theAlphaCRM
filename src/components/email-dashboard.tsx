@@ -220,7 +220,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                 >
                   {isSidebarCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
                 </Button>
-                <div className="relative flex-1 border border-w rounded-md">
+                <div className="relative flex-1 border rounded-md">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input placeholder="Search emails..." className="pl-9 bg-background border border-grey-700" />
                 </div>
