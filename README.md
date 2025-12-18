@@ -38,8 +38,8 @@ Make sure you have [Node.js](https://nodejs.org/en/) and [pnpm](https://pnpm.io/
     ```bash
     pnpm install
     ```
-    '''npm install drizzle-orm postgres'''
-    '''npm install @supabase/supabase-js @supabase/ssr'''
+    ```npm install drizzle-orm postgres```
+    ```npm install @supabase/supabase-js @supabase/ssr```
 
 3.  **Set up environment variables:**
     
