@@ -30,7 +30,7 @@ export default async function DashboardLayout({
   const userRole = dbResult[0]?.role || "user"
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen bg-black">
       <DashboardSidebar 
         userEmail={user.email || ""} 
         userRole={userRole} 

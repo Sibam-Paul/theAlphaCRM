@@ -34,7 +34,7 @@ export function AddUserForm() {
   }
 
   return (
-    <Card className="max-w-2xl">
+    <Card className="max-w-2xl bg-[#171717] border border-[#2E2F2F] ">
       <CardHeader>
         <CardTitle>Create New User</CardTitle>
       
@@ -44,35 +44,35 @@ export function AddUserForm() {
           
           <div className="space-y-2">
             <Label htmlFor="name">Full Name</Label>
-            <Input 
+            <input 
               id="name" 
               name="name" 
               placeholder="Enter First Name" 
               required 
-              className="border-white"
+              className="pl-3 h-9 w-full border rounded-md bg-transparent outline-none border-[#373737] focus:ring-2 focus:ring-[#575757]"
             />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="email">Email Address</Label>
-            <Input 
+            <input 
               id="email" 
               name="email" 
               type="email" 
               placeholder="Enter Email Address" 
               required 
-              className="border-white"
+              className="pl-3 h-9 w-full border rounded-md bg-transparent outline-none border-[#373737] focus:ring-2 focus:ring-[#575757]"
             />
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="mobileNumber">Mobile Number</Label>
-            <Input 
+            <input 
               id="mobileNumber" 
               name="mobileNumber" 
               placeholder="Mobile Number" 
               required 
-              className="border-white"
+              className="pl-3 h-9 w-full border rounded-md bg-transparent outline-none border-[#373737] focus:ring-2 focus:ring-[#575757]"
             />
           </div>
 
@@ -81,14 +81,14 @@ export function AddUserForm() {
             <select 
               name="role" 
               id="role"
-              className="flex h-10 w-full rounded-md border border-white bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex h-10 rounded-md border border-[#373737] bg- bg-[#222223] px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             >
                 <option value="user">User</option>
                 <option value="admin">Admin</option>
             </select>
           </div>
 
-          <Button type="submit" disabled={isLoading} className="w-full">
+          <Button type="submit" disabled={isLoading} className="w-[30%] h-10 bg-white text-black font-bold hover:bg-[#E5E5E5]">
             {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <><UserPlus className="mr-2 h-4 w-4"/> Create Account</>}
           </Button>
         </form>

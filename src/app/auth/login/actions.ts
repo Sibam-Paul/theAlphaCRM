@@ -10,15 +10,27 @@ export async function login(formData: FormData) {
   const email = formData.get('email') as string
   const password = formData.get('password') as string
 
+  // Email validation
+  const emailRegex = /^[a-zA-Z0-9.@]+$/
+  if (!emailRegex.test(email)) {
+    return { error: 'Email can only contain letters, numbers, @ and .' }
+  }
+  if (!email.includes('@') || !email.includes('.')) {
+    return { error: 'Email must contain @ and .' }
+  }
+
   const { error } = await supabase.auth.signInWithPassword({
     email,
     password,
   })
 
   if (error) {
-    return redirect('/auth/login?error=Could not authenticate')
+    // Distinguish between invalid email and wrong password
+    if (error.message.includes('Invalid login credentials')) {
+      return { error: 'Invalid email or password' }
+    }
+    return { error: error.message }
   }
-  //  add a red text - invalid credentials
 
   revalidatePath('/', 'layout')
   redirect('/dashboard')

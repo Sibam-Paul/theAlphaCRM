@@ -1,5 +1,15 @@
 import { createClient } from "@/utils/supabase/server";
-import { Users, DollarSign, Activity } from "lucide-react"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Badge } from "@/components/ui/badge"
+import { GripVertical, CheckCircle2, Loader, Users, DollarSign, Activity } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default async function DashboardPage() {
@@ -41,6 +51,64 @@ export default async function DashboardPage() {
     },
   ]
 
+  const sections = [
+    {
+      header: "Cover page",
+      sectionType: "Cover page",
+      status: "In Process",
+      target: 18,
+    },
+    {
+      header: "Table of contents",
+      sectionType: "Table of contents",
+      status: "Done",
+      target: 29,
+    },
+    {
+      header: "Executive summary",
+      sectionType: "Narrative",
+      status: "Done",
+      target: 10,
+    },
+    {
+      header: "Technical approach",
+      sectionType: "Narrative",
+      status: "Done",
+      target: 27,
+    },
+    { header: "Design", sectionType: "Narrative", status: "In Process", target: 2 },
+    {
+      header: "Capabilities",
+      sectionType: "Narrative",
+      status: "In Process",
+      target: 20,
+    },
+    {
+      header: "Integration with existing systems",
+      sectionType: "Narrative",
+      status: "In Process",
+      target: 19,
+    },
+    {
+      header: "Innovation and Advantages",
+      sectionType: "Narrative",
+      status: "Done",
+      target: 25,
+    },
+    {
+      header: "Overview of EMR's Innovative Solutions",
+      sectionType: "Technical content",
+      status: "Done",
+      target: 7,
+    },
+    {
+      header: "Advanced Algorithms and Machine Learning",
+      sectionType: "Narrative",
+      status: "Done",
+      target: 30,
+    },
+  ]
+
   const getFirstName = () => {
     if (user?.email) {
       const emailName = user.email.split("@")[0];
@@ -51,18 +119,18 @@ export default async function DashboardPage() {
 
 
   return (
-    <div className="p-8 bg-[#121212] min-h-full">
+    <div className="p-8 bg-[#0A0A0A] min-h-full">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-foreground mb-2">Dashboard</h1>
         <p className="text-muted-foreground">Welcome back, {getFirstName()}!</p>
       </div>
 
-      {/* Stats Grid */} 
+      {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {stats.map((stat) => {
           const Icon = stat.icon
           return (
-            <Card key={stat.title} className="overflow-hidden border-gray-400">
+            <Card key={stat.title} className="overflow-hidden bg-[#171717] border border-[#2D2D2D]">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">{stat.title}</CardTitle>
                 <Icon className="w-4 h-4 text-muted-foreground" />
@@ -77,7 +145,7 @@ export default async function DashboardPage() {
                   </span>
                   <span className="text-xs text-muted-foreground">{stat.changeLabel}</span>
                 </div>
-                <div className="text-xs text-muted-foreground mt-2 pt-2 border-t border-border/50">
+                <div className="text-xs text-muted-foreground mt-2 pt-2">
                   {stat.trendText}
                 </div>
                 <div className="text-xs text-muted-foreground/70 mt-1">{stat.description}</div>
@@ -87,67 +155,51 @@ export default async function DashboardPage() {
         })}
       </div>
 
-      {/* Recent Activity */}
-      <Card className="border-border/50">
+      {/* Recent Activity Table */}
+      <Card className="border-border/50 rounded-md bg-[#171717] border border-[#2D2D2D]">
         <CardHeader>
-          <div className="flex items-center justify-between">
-            <div>
-              <CardTitle className="text-foreground">Recent Activity</CardTitle>
-              <p className="text-sm text-muted-foreground mt-1">Latest customer transactions and updates</p>
-            </div>
-          </div>
+          <CardTitle className="text-foreground">Proposal Sections</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            {[
-              {
-                name: "Olivia Martin",
-                email: "olivia.martin@email.com",
-                amount: "+$1,999.00",
-                time: "2 hours ago",
-              },
-              {
-                name: "Jackson Lee",
-                email: "jackson.lee@email.com",
-                amount: "+$39.00",
-                time: "4 hours ago",
-              },
-              {
-                name: "Isabella Nguyen",
-                email: "isabella.nguyen@email.com",
-                amount: "+$299.00",
-                time: "5 hours ago",
-              },
-              {
-                name: "William Kim",
-                email: "will@email.com",
-                amount: "+$99.00",
-                time: "1 day ago",
-              },
-            ].map((activity, idx) => (
-              <div
-                key={idx}
-                className="flex items-center justify-between p-3 rounded-lg hover:bg-foreground/5 transition-colors border border-transparent hover:border-border/50"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center font-semibold text-sm text-foreground">
-                    {activity.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-foreground">{activity.name}</p>
-                    <p className="text-xs text-muted-foreground">{activity.email}</p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm font-medium text-foreground">{activity.amount}</p>
-                  <p className="text-xs text-muted-foreground">{activity.time}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <Table>
+            <TableHeader>
+              <TableRow className="border-b border-border/50">
+                <TableHead className="w-[50px]"></TableHead>
+                <TableHead className="w-[50px]"></TableHead>
+                <TableHead>Header</TableHead>
+                <TableHead>Section Type</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="text-right">Target</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {sections.map((section, index) => (
+                <TableRow key={index} className="border-b border-border/50 hover:bg-foreground/5">
+                  <TableCell>
+                    <GripVertical className="h-5 w-5 text-muted-foreground" />
+                  </TableCell>
+                  <TableCell>
+                    <Checkbox />
+                  </TableCell>
+                  <TableCell className="font-medium text-foreground">{section.header}</TableCell>
+                  <TableCell>
+                    <Badge variant="outline" className="border-border/80">{section.sectionType}</Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      {section.status === "Done" ? (
+                        <CheckCircle2 className="h-4 w-4 text-green-500" />
+                      ) : (
+                        <Loader className="h-4 w-4 text-yellow-500 animate-spin" />
+                      )}
+                      <span className="text-muted-foreground">{section.status}</span>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-right text-muted-foreground">{section.target}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
     </div>

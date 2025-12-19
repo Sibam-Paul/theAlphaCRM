@@ -86,10 +86,10 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
   }
 
   return (
-    <div className="p-8 h-full flex flex-col overflow-y-auto bg-[#121212] space-y-8">
+    <div className="p-8 h-full flex flex-col overflow-y-auto bg-[#0A0A0A] space-y-8">
       
       {/* --- SECTION 1: COMPOSER --- */}
-      <Card className="border-border/50">
+      <Card className="border-[#2E2F2F] bg-[#171717]">
         <CardHeader>
           <div className="flex items-center gap-3">
             <Send className="w-5 h-5 text-muted-foreground" />
@@ -100,12 +100,12 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="flex gap-1 mb-6">
             <button
               type="button"
               onClick={() => setEmailType("broadcast")}
               className={cn(
-                "py-3 px-4 rounded-lg text-sm font-medium transition-all border",
+                "py-3 px-4 rounded-lg text-sm font-medium transition-all border-[#2E2F2F]",
                 emailType === "broadcast"
                   ? "bg-foreground/5 border-foreground/20 text-foreground"
                   : "bg-transparent border-border/50 text-muted-foreground hover:bg-foreground/5",
@@ -117,7 +117,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
               type="button"
               onClick={() => setEmailType("direct")}
               className={cn(
-                "py-3 px-4 rounded-lg text-sm font-medium transition-all border",
+                "py-3 px-4 rounded-lg text-sm font-medium transition-all",
                 emailType === "direct"
                   ? "bg-foreground/5 border-foreground/20 text-foreground"
                   : "bg-transparent border-border/50 text-muted-foreground hover:bg-foreground/5",
@@ -132,13 +132,16 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
              <div>
                 <label className="text-sm font-medium text-foreground block mb-2">From</label>
                 <div className="flex items-center gap-2">
-                    <Input 
+                    
+                    <div className="relative">                       
+                        <input
                         name="fromPrefix" 
                         placeholder="noreply" 
                         defaultValue="noreply"
-                        className="bg-background border-gray-700 hover:bg-[#1A1A1A]" 
-                        required
-                    />
+                        className="bg-transparent border border-[#373737] rounded-md px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#575757] focus:border-[#575757]"
+                      ></input>
+
+                    </div>
                 </div>
             </div>
 
@@ -146,23 +149,23 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
             <div className="gap-4 *:mb-4">
                 <div>
                     <label className="text-sm font-medium text-foreground block mb-2">To</label>
-                    <Input 
+                    
+                    <input 
                         name="to" 
                         type="email" 
                         placeholder="client@example.com" 
-                        className="bg-background border-gray-700" 
+                        className="bg-transparent  w-[40%] border border-[#373737] rounded-md px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#575757] focus:border-[#575757]" 
                         required 
                     />
                 </div>
             </div>
-
             {/* TITLE (Sender Name) */}
             <div>
               <label className="text-sm font-medium text-foreground block mb-2">Title (Sender Name)</label>
-              <Input 
+              <input 
                 name="title" 
                 placeholder="e.g. Support Team" 
-                className="bg-background border-gray-700" 
+                className="bg-transparent w-[40%] border border-[#373737] rounded-md px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#575757] focus:border-[#575757]" 
                 required 
               />
             </div>
@@ -170,19 +173,19 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
             {/* SUBJECT */}
             <div>
               <label className="text-sm font-medium text-foreground block mb-2">Subject</label>
-              <Input name="subject" placeholder="Email subject" className="bg-background border-gray-700" required />
+              <input name="subject" placeholder="Email subject" className="bg-transparent w-[40%] border border-[#373737] rounded-md px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#575757] focus:border-[#575757]" required />
             </div>
 
             {/* MESSAGE */}
             <div>
               <label className="text-sm font-medium text-foreground block mb-2">Message</label>
-              <Textarea name="message" placeholder="Enter message....." rows={6} className="bg-background resize-none border-gray-700" required />
+              <Textarea name="message" placeholder="Enter message....." rows={6} className="bg-transparent border border-[#373737] rounded-md px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[#575757] focus:border-[#575757]" required />
             </div>
 
             <Button
               type="submit"
               disabled={isPending}
-              className="w-full bg-foreground/10 hover:bg-foreground/20 text-foreground border-gray-700"
+              className="relative left-[15px] w-[25%] h-10 bg-white text-black font-bold hover:bg-[#E5E5E5]"
               size="lg"
             >
               {isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
@@ -193,7 +196,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
       </Card>
 
       {/* --- SECTION 2: HISTORY LIST --- */}
-      <Card className="border-border/50">
+      <Card className="border-[#2D2D2D] bg-[#171717]">
         <CardHeader>
           <div className="flex items-center gap-3">
             <Inbox className="w-5 h-5 text-muted-foreground" />
@@ -208,12 +211,12 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
             
 
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-4 pb-4 border-white/5">
-                <div className="relative flex-1 border rounded-md">
+              <div className="flex items-center mb-3 gap-2">
+                <div className="relative flex-1 bg-[#171717] rounded-md">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input 
+                  <input 
                     placeholder="Search emails..." 
-                    className="pl-9 bg-background border border-gray-700"
+                    className="focus:ring-2 focus:ring-[#575757] pl-10 h-10 w-[50%] rounded-md bg-transparent outline-none"
                     // CONNECTED SEARCH
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -233,7 +236,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                         // CLICK EVENT ADDED HERE
                         onClick={() => setSelectedEmail(email)}
                         className={cn(
-                            "flex items-center gap-4 p-3 hover:bg-foreground/5 rounded-lg cursor-pointer transition-colors group border border-transparent hover:border-border/50",
+                            "flex items-center gap-3 p-3 m-2 hover:bg-foreground/5 rounded-lg cursor-pointer transition-colors group  hover:border-border/50",
                             selectedEmail?.id === email.id ? "bg-foreground/5 border-gray-700" : ""
                         )}
                     >
@@ -281,13 +284,13 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
       {/* --- SECTION 3: READ VIEW (Appears Below) --- */}
       {selectedEmail && (
         <div ref={detailViewRef} className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
-            <Card className="border-gray-700 shadow-lg overflow-hidden bg-[#1E1E1E]">
+            <Card className="border-[#2D2D2D] shadow-lg overflow-hidden bg-[#171717]">
                 {/* Header Controls */}
-                <div className="flex items-center justify-between px-6 py-4 border-b border-gray-700">
-                    <h3 className="font-semibold text-lg truncate pr-4 text-foreground">{selectedEmail.subject}</h3>
+                <div className="flex items-center justify-between py-2 px-3 border-b border-[#2D2D2D]">
+                    <h3 className="font-semibold text-lg truncate pr-4 text-foreground text-center">{selectedEmail.subject}</h3>
                     <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="icon" onClick={() => setSelectedEmail(null)} title="Close">
-                            <X className="w-4 h-4 text-muted-foreground hover:text-foreground" />
+                        <Button className="bg-[#222222] hover:bg-[#333333]" size="icon" onClick={() => setSelectedEmail(null)} title="Close">
+                            <X className="w-4 h-4 text-[#848484] hover:text-[#F8F8F8] " />
                         </Button>
                     </div>
                 </div>
@@ -301,7 +304,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                             </Avatar>
                             <div className="space-y-1">
                                 <div className="flex items-center gap-2">
-                                    <span className="font-bold text-sm text-foreground">CRM System</span>
+                                    <span className="font-bold text-sm text-foreground">CRM.tao</span>
                                     <span className="text-xs text-muted-foreground">&lt;noreply@{process.env.NEXT_PUBLIC_MAILEROO_DOMAIN || 'domain.com'}&gt;</span>
                                 </div>
                                 <div className="text-xs text-muted-foreground">
@@ -320,15 +323,15 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                         <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(selectedEmail.body) }} />
                     </div>
 
-                    <Separator className="my-8 bg-gray-700" />
+                    <Separator className="my-8 bg-[171717]" />
 
                     {/* Action Buttons */}
                     <div className="flex gap-2">
-                        <Button variant="outline" className="gap-2 text-muted-foreground border-gray-700 hover:text-foreground hover:bg-gray-800">
-                            <Reply className="w-4 h-4" /> Reply
+                        <Button className="gap-2 text-[#848484] border border-[#2D2D2D] hover:text-foreground hover:bg-[#222222] bg-[171717]">
+                            <Reply className="w-4 h-4" />Reply
                         </Button>
-                        <Button variant="outline" className="gap-2 text-muted-foreground border-gray-700 hover:text-foreground hover:bg-gray-800">
-                            <Forward className="w-4 h-4" /> Forward
+                        <Button className="gap-2 text-[#848484] border border-[#2D2D2D] hover:text-foreground hover:bg-[#222222] bg-[171717]">
+                            <Forward className="w-4 h-4" />Forward
                         </Button>
                     </div>
                 </CardContent>
