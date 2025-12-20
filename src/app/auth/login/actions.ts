@@ -11,9 +11,10 @@ export async function login(formData: FormData) {
   const password = formData.get('password') as string
 
   // Email validation
-  const emailRegex = /^[a-zA-Z0-9.@]+$/
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
   if (!emailRegex.test(email)) {
-    return { error: 'Email can only contain letters, numbers, @ and .' }
+    return { error: 'Please enter a valid email address.' }
   }
   if (!email.includes('@') || !email.includes('.')) {
     return { error: 'Email must contain @ and .' }

@@ -185,7 +185,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
             <Button
               type="submit"
               disabled={isPending}
-              className="relative left-[15px] w-[25%] h-10 bg-white text-black font-bold hover:bg-[#E5E5E5]"
+              className="relative left-3.75 w-[25%] h-10 bg-white text-black font-bold hover:bg-[#E5E5E5]"
               size="lg"
             >
               {isPending ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Send className="w-4 h-4 mr-2" />}
@@ -212,11 +212,12 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
 
             <div className="flex-1 min-w-0">
               <div className="flex items-center mb-3 gap-2">
-                <div className="relative flex-1 bg-[#171717] rounded-md">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <div className="relative flex-1 bg-[#171717] rounded-md mx-5">
+                  <Search className="absolute left-3 top-1/2  -translate-y-1/2 w-4 h-4 text-muted-foregroun d" />
+                  {/* //search bar  */}
                   <input 
                     placeholder="Search emails..." 
-                    className="focus:ring-2 focus:ring-[#575757] pl-10 h-10 w-[50%] rounded-md bg-transparent outline-none"
+                    className="focus:ring-2 focus:ring-[#575757] pl-10 h-10  w-[95%] border border-[#373737] rounded-xl bg-black outline-none"
                     // CONNECTED SEARCH
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
