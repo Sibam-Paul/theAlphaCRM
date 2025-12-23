@@ -108,7 +108,7 @@ export function UserList({ initialUsers, currentUserId }: { initialUsers: CRMUse
         description: "The account has been permanently removed from the database.",
       })
 
-      // ✅ Optimistic Update: Remove user from local state immediately
+   
       setUsers((prev) => prev.filter((u) => u.id !== targetUser.id))
       
       setTargetUser(null)
@@ -141,7 +141,7 @@ export function UserList({ initialUsers, currentUserId }: { initialUsers: CRMUse
             placeholder="Search email or name..."
             className="pl-9 bg-black/20 border-[#2E2F2F]"
             value={search} // Fixed: was searchTerm
-            onChange={(e) => setSearch(e.target.value)} // Fixed: was setSearchTerm
+            onChange={(e) => setSearch(e.target.value)} 
           />
         </div>
       </div>

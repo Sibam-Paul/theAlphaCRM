@@ -72,16 +72,17 @@ export async function deleteUser(formData: FormData) {
   )
 
   try {
+    
+    await db.delete(users).where(eq(users.id, targetUserId))
 
+    // Then delete from Auth
     const { error: deleteAuthError } = await supabaseAdmin.auth.admin.deleteUser(targetUserId)
     
-   
     if (deleteAuthError && !deleteAuthError.message.includes("User not found")) {
-      throw deleteAuthError
+      // If Auth delete fails, log it. The user is removed from the App (DB), 
+      // effectively banning them, even if their Auth record lingers.
+      console.error("Warning: User deleted from DB but Auth deletion failed:", deleteAuthError)
     }
-
-    // B. Delete from Database
-    await db.delete(users).where(eq(users.id, targetUserId))
     
     revalidatePath('/dashboard/users')
     return { success: true }
