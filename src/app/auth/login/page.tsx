@@ -77,7 +77,11 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-black p-4">
       <Card className="w-full max-w-md border-border/50">
         <CardHeader className="space-y-2 text-center">
-          <CardTitle className="text-3xl font-bold">CRM.TAO</CardTitle>
+            <svg fill="currentColor"  viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="size-6 md:size-15 mx-auto text-white"><path d="M50 10L80 80H65L50 50L35 80H20L50 10Z" fill="currentColor"></path><circle cx="50" cy="35" r="5" fill="currentColor"></circle></svg>
+
+          <CardTitle className="text-3xl font-bold flex  gap-5 mx-auto">
+           <span> CRM.TAO</span> 
+            </CardTitle>
           <CardDescription className="text-lg font-semibold">
             Sign in to your CRM.tao account
           </CardDescription>

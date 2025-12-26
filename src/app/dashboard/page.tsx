@@ -120,14 +120,14 @@ export default async function DashboardPage() {
 
 
   return (
-    <div className="p-2 mr-2 bg-[#0A0A0A] min-h-full">
-      <div className="m-3">
-        <h1 className="text-3xl font-bold text-foreground mb-2">Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back, {getFirstName()}!</p>
+    <div className="p-4 md:p-4 pt-20 md:pt-5 bg-[#0A0A0A] min-h-full">
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Dashboard</h1>
+        <p className="text-muted-foreground text-sm md:text-base">Welcome back, {getFirstName()}!</p>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
         {stats.map((stat) => {
           const Icon = stat.icon
 
@@ -170,46 +170,48 @@ export default async function DashboardPage() {
           <div className="flex text-sm font-bold gap-2"> <TriangleAlert className=" text-yellow-300 w-4"/> <p>dummy data</p> </div>
 
         </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow className="border-b border-border/50">
-                <TableHead className="w-12.5"></TableHead>
-                <TableHead className="w-12.5"></TableHead>
-                <TableHead>Header</TableHead>
-                <TableHead>Section Type</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Target</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {sections.map((section, index) => (
-                <TableRow key={index} className="border-b border-border/50 hover:bg-foreground/5">
-                  <TableCell>
-                    <GripVertical className="h-5 w-5 text-muted-foreground" />
-                  </TableCell>
-                  <TableCell>
-                    <Checkbox />
-                  </TableCell>
-                  <TableCell className="font-medium text-foreground">{section.header}</TableCell>
-                  <TableCell>
-                    <Badge variant="outline" className="border-border/80">{section.sectionType}</Badge>
-                  </TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-2">
-                      {section.status === "Done" ? (
-                        <CheckCircle2 className="h-4 w-4 text-green-500" />
-                      ) : (
-                        <Loader className="h-4 w-4 text-yellow-500 animate-spin" />
-                      )}
-                      <span className="text-muted-foreground">{section.status}</span>
-                    </div>
-                  </TableCell>
-                  <TableCell className="text-right text-muted-foreground">{section.target}</TableCell>
+        <CardContent className="p-0 md:p-6">
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow className="border-b border-border/50">
+                  <TableHead className="w-12.5 hidden md:table-cell"></TableHead>
+                  <TableHead className="w-12.5 hidden md:table-cell"></TableHead>
+                  <TableHead className="min-w-[200px]">Header</TableHead>
+                  <TableHead className="min-w-[120px]">Section Type</TableHead>
+                  <TableHead className="min-w-[100px]">Status</TableHead>
+                  <TableHead className="text-right min-w-[80px]">Target</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {sections.map((section, index) => (
+                  <TableRow key={index} className="border-b border-border/50 hover:bg-foreground/5">
+                    <TableCell className="hidden md:table-cell">
+                      <GripVertical className="h-5 w-5 text-muted-foreground" />
+                    </TableCell>
+                    <TableCell className="hidden md:table-cell">
+                      <Checkbox />
+                    </TableCell>
+                    <TableCell className="font-medium text-foreground">{section.header}</TableCell>
+                    <TableCell>
+                      <Badge variant="outline" className="border-border/80 whitespace-nowrap">{section.sectionType}</Badge>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-2">
+                        {section.status === "Done" ? (
+                          <CheckCircle2 className="h-4 w-4 text-green-500 shrink-0" />
+                        ) : (
+                          <Loader className="h-4 w-4 text-yellow-500 animate-spin shrink-0" />
+                        )}
+                        <span className="text-muted-foreground whitespace-nowrap">{section.status}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-right text-muted-foreground">{section.target}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
     </div>

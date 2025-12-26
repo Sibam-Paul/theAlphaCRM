@@ -56,10 +56,10 @@ const getLogIcon = (type: string) => {
 
 export default function LogsPage() {
   return (
-    <div className="p-8 bg-[#0A0A0A]">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground mb-2">Activity Logs</h1>
-        <p className="text-muted-foreground">View system activity and user actions</p>
+    <div className="p-4 md:p-8 pt-20 md:pt-8 bg-[#0A0A0A]">
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Activity Logs</h1>
+        <p className="text-muted-foreground text-sm md:text-base">View system activity and user actions</p>
       </div>
 
       <Card className="bg-[#171717]">

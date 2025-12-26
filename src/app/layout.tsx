@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     title: 'CRM Tao',
   },
   icons: {
-    icon:'/icon-192x192.png', 
-    apple: '/icon-192x192.png' , 
+    icon:'/favicon.png', 
+    apple: '/favicon.png' , 
   }, 
 }
 
@@ -35,8 +35,8 @@ export const viewport: Viewport = {
   themeColor: '#0A0A0A',
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false, // Prevents zooming like a native app
+  maximumScale: 5, // Allow zoom for accessibility
+  userScalable: true, // Enable zoom for accessibility (WCAG compliance)
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
