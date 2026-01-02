@@ -50,8 +50,8 @@ export function MobileNav({ userEmail, userRole, userName, userAvatar }: MobileN
         
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="h-10 w-10">
-              <Menu className="h-6 w-6" />
+            <Button variant="ghost" size="icon" className="h-9 w-9">
+              <Menu className="size-7" /> 
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-[280px] bg-[#171717] border-[#2E2F2F] p-0">

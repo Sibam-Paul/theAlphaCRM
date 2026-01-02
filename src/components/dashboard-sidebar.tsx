@@ -207,7 +207,7 @@ export function DashboardSidebar({ userEmail, userRole, userName, userAvatar }: 
             
             {/* 🛡️ THE SHIELD: A physical block over the buttons until ready */}
             {!isReady && (
-                <div className="absolute inset-0 z-[100] bg-transparent cursor-default" />
+                <div className="absolute inset-0 z-100 bg-transparent cursor-default" />
             )}
 
             <div className={cn("transition-opacity duration-300", !isReady && "opacity-50")}>

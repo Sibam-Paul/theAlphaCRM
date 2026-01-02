@@ -25,6 +25,7 @@ type EmailLog = {
     status: string | null
     sentAt: Date | null
     sender_name: string | null
+    prefix : string | null
 }
 
 const initialState: EmailState = {
@@ -157,7 +158,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                       {selectedEmail.sender_name || "System Notification"}
                     </span>
                     <span className="text-xs text-muted-foreground truncate">
-                      &lt;noreply@{process.env.NEXT_PUBLIC_MAILEROO_DOMAIN || 'domain.com'}&gt;
+                      &lt;{selectedEmail.prefix}@{process.env.NEXT_PUBLIC_MAILEROO_DOMAIN || 'domain.com'}&gt;
                     </span>
                   </div>
                   <div className="text-xs text-muted-foreground">
@@ -441,7 +442,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                                     <span className="font-bold text-lg text-foreground">
                                       {selectedEmail.sender_name || "System Notification"}
                                     </span>
-                                    <span className="text-xs text-muted-foreground">&lt;noreply@{process.env.NEXT_PUBLIC_MAILEROO_DOMAIN || 'domain.com'}&gt;</span>
+                                    <span className="text-xs text-muted-foreground">&lt;{selectedEmail.prefix}@{process.env.NEXT_PUBLIC_MAILEROO_DOMAIN || 'domain.com'}&gt;</span>
                                 </div>
                                 <div className="text-xs text-muted-foreground">
                                     to <span className="text-foreground">{selectedEmail.recipients}</span>

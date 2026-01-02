@@ -23,5 +23,6 @@ export const emailLogs = pgTable('email_logs', {
   type: text('type').notNull(), // 'broadcast' or 'direct'
   status: text('status').default('sent'),
   sender_name: text("title").default("email-dashboard"), // title
+  prefix: text("prefix").default("noreply"), // email prefix
   sentAt: timestamp('sent_at').defaultNow(),
 });

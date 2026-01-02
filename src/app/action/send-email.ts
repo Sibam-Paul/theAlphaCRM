@@ -81,6 +81,7 @@ export async function sendEmail(prevState: EmailState, formData: FormData): Prom
       status: 'sent',
       sentAt: new Date(),
       sender_name: displayName,
+      prefix: fromPrefix
     })
 
     revalidatePath('/dashboard/email')

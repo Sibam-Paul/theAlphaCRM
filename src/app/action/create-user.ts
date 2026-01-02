@@ -43,8 +43,8 @@ export async function createUser(formData: FormData) {
   }
 
   
-  if (mobileNumber.length <= 10 || mobileNumber.length >= 12) {
-    return { success: false, error: "Mobile number must have atleast 10 digits." }
+  if (mobileNumber.length < 10 || mobileNumber.length > 12) {
+    return { success: false, error: "Mobile number must have at least 10 digits." }
   }
   // Generate Password
   const cleanName = name.split(' ')[0];
