@@ -132,15 +132,15 @@ export function UserList({ initialUsers, currentUserId }: { initialUsers: CRMUse
   }
 
   return (
-    <div className="flex flex-col h-[85%] bg-[#171717] border border-[#2E2F2F] rounded-xl ">
+    <div className="flex flex-col h-[60vh] bg-[#171717] border border-[#2E2F2F] rounded-xl">
       <div className="p-4 border-b border-[#2E2F2F] space-y-4">
         <h3 className="text-lg font-semibold text-foreground">Active Members</h3>
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
             placeholder="Search email or name..."
-            className="pl-9 bg-black/20 border-[#2E2F2F]"
-            value={search} // Fixed: was searchTerm
+            className="pl-9 h-11 md:h-10 text-base md:text-sm bg-black/20 border-[#2E2F2F]"
+            value={search}
             onChange={(e) => setSearch(e.target.value)} 
           />
         </div>
@@ -158,9 +158,9 @@ export function UserList({ initialUsers, currentUserId }: { initialUsers: CRMUse
               )}>
                 <button
                   onClick={() => setExpandedUserId(isExpanded ? null : user.id)}
-                  className="w-full flex items-center gap-3 p-3 text-left"
+                  className="w-full flex items-center gap-3 p-3 text-left min-h-[60px] md:min-h-0"
                 >
-                  <Avatar className="h-10 w-10 border border-[#2E2F2F]">
+                  <Avatar className="h-12 w-12 md:h-10 md:w-10 border border-[#2E2F2F] shrink-0">
                     <AvatarImage
                       src={user.avatarUrl || `https://avatar.vercel.sh/${user.email}.png`}
                       className="object-cover"
@@ -170,26 +170,34 @@ export function UserList({ initialUsers, currentUserId }: { initialUsers: CRMUse
                     </AvatarFallback>
                   </Avatar>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground truncate">{user.name || "Unnamed User"}</p>
-                    <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                    {/* Mobile: Show only Name */}
+                    <p className="text-base md:text-sm font-medium text-foreground truncate">{user.name || "Unnamed User"}</p>
+                    {/* Desktop: Show Email */}
+                    <p className="text-sm md:text-xs text-muted-foreground truncate hidden md:block">{user.email}</p>
+                    {/* Mobile: Hide Email initially, show in expanded view */}
                   </div>
-                  {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4 opacity-50" />}
+                  {isExpanded ? <ChevronUp className="w-5 h-5 md:w-4 md:h-4" /> : <ChevronDown className="w-5 h-5 md:w-4 md:h-4 opacity-50" />}
                 </button>
 
                 {isExpanded && (
                   <div className="px-4 pb-4 pt-2 space-y-4 relative animate-in fade-in slide-in-from-top-2">
-                    <div className="grid grid-cols-1 gap-3 text-xs">
+                    <div className="grid grid-cols-1 gap-3 text-sm md:text-xs">
+                      {/* Mobile: Show Email in expanded view */}
+                      <div className="flex items-center gap-2 text-foreground md:hidden">
+                        <span className="text-muted-foreground text-xs">Email:</span> {user.email}
+                      </div>
+                      
                       <div className="flex items-center gap-2 text-muted-foreground">
-                        <Fingerprint className="w-3.5 h-3.5" /> <span className="font-mono">{user.id}</span>
+                        <Fingerprint className="w-4 h-4 md:w-3.5 md:h-3.5" /> <span className="font-mono text-xs">{user.id}</span>
                       </div>
                       <div className="flex items-center gap-2 text-foreground">
-                        <Shield className="w-3.5 h-3.5 text-blue-500" /> <span className="capitalize">{user.role}</span>
+                        <Shield className="w-4 h-4 md:w-3.5 md:h-3.5 text-blue-500" /> <span className="capitalize">{user.role}</span>
                       </div>
                       <div className="flex items-center gap-2 text-foreground">
-                        <Phone className="w-3.5 h-3.5 text-green-500" /> {user.mobileNumber}
+                        <Phone className="w-4 h-4 md:w-3.5 md:h-3.5 text-green-500" /> {user.mobileNumber}
                       </div>
                       <div className="flex items-center gap-2 text-muted-foreground">
-                        <Calendar className="w-3.5 h-3.5" /> Created: {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
+                        <Calendar className="w-4 h-4 md:w-3.5 md:h-3.5" /> Created: {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
                       </div>
                     </div>
 
@@ -197,7 +205,7 @@ export function UserList({ initialUsers, currentUserId }: { initialUsers: CRMUse
                       <Button
                         size="sm"
                         variant="ghost"
-                        className="text-red-500 hover:text-red-400 hover:bg-red-500/10 h-8 gap-2"
+                        className="w-full md:w-auto text-red-500 hover:text-red-400 hover:bg-red-500/10 h-11 md:h-8 gap-2"
                         disabled={user.id === currentUserId}
                         onClick={() => setTargetUser(user)}
                       >
@@ -252,7 +260,7 @@ export function UserList({ initialUsers, currentUserId }: { initialUsers: CRMUse
                   setDeleteError("")
                 }}
                 className={cn(
-                  "pl-10 pr-10 h-10 w-full border rounded-md bg-transparent outline-none text-sm transition-all",
+                  "pl-10 pr-10 h-11 md:h-10 w-full border rounded-md bg-transparent outline-none text-base md:text-sm transition-all",
                   deleteError
                     ? "border-red-500 focus:ring-2 focus:ring-red-500/50"
                     : "border-[#373737] focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-foreground placeholder:text-muted-foreground"
@@ -274,14 +282,15 @@ export function UserList({ initialUsers, currentUserId }: { initialUsers: CRMUse
           </div>
 
           <AlertDialogFooter>
-            <AlertDialogCancel className="bg-transparent border-[#2E2F2F] hover:bg-[#2E2F2F] text-foreground">Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="bg-transparent border-[#2E2F2F] hover:bg-[#2E2F2F] text-foreground h-11 md:h-10">Cancel</AlertDialogCancel>
             <Button
               disabled={!adminPass || isDeleting}
               onClick={handleDelete}
               variant="destructive"
+              className="h-11 md:h-10"
             >
               {isDeleting ? <Loader2 className="animate-spin mr-2 h-4 w-4" /> : <Trash2 className="mr-2 h-4 w-4" />}
-              Confirm Hard Delete
+              Delete User
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>

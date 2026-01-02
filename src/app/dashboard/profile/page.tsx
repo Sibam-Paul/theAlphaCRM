@@ -19,15 +19,15 @@ export default async function ProfilePage() {
   if (!dbUser) return null
 
   return (
-    <div className="max-w-4xl m-5 mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="mt-10"> 
-        <h2 className="text-3xl font-bold tracking-tight">Settings</h2>
-        <p className="text-muted-foreground">
+    <div className="max-w-4xl mx-auto p-4 md:p-5 pt-20 md:pt-5 space-y-6 md:space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="mt-6 md:mt-10"> 
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Settings</h2>
+        <p className="text-muted-foreground text-sm md:text-base">
           Manage your account settings and preferences.
         </p>
       </div>
 
-      <div className="grid gap-8">
+      <div className="grid gap-6 md:gap-8">
         {/* 1. Basic Info & Avatar */}
         <ProfileView user={{
           id: user.id,

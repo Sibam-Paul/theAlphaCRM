@@ -75,9 +75,13 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black p-4">
+        <svg fill="currentColor"  viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" className="size-14 md:size-15 mx-auto text-white absolute top-5 mt-15 "><path d="M50 10L80 80H65L50 50L35 80H20L50 10Z" fill="currentColor"></path><circle cx="50" cy="35" r="5" fill="currentColor"></circle></svg>
       <Card className="w-full max-w-md border-border/50">
         <CardHeader className="space-y-2 text-center">
-          <CardTitle className="text-3xl font-bold">CRM.TAO</CardTitle>
+
+          <CardTitle className="text-3xl font-bold flex  gap-5 mx-auto">
+           <span> CRM.TAO</span> 
+            </CardTitle>
           <CardDescription className="text-lg font-semibold">
             Sign in to your CRM.tao account
           </CardDescription>
@@ -177,7 +181,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full h-10 bg-gray-300 text-black font-bold hover:bg-[#E5E5E5]"
+              className="w-full h-10 bg-gray-300 text-black font-bold cursor-pointer hover:bg-[#E5E5E5]"
             >
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />

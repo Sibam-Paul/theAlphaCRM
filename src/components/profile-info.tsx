@@ -90,7 +90,7 @@ export function ProfileView({ user }: ProfileViewProps) {
                 id="email" 
                 value={user.email} 
                 disabled 
-                className="bg-black/20 border-[#2E2F2F] text-muted-foreground cursor-not-allowed" 
+                className="bg-black/20 border-[#2E2F2F] text-muted-foreground cursor-not-allowed h-11 md:h-10 text-base md:text-sm" 
               />
             </div>
 
@@ -101,7 +101,7 @@ export function ProfileView({ user }: ProfileViewProps) {
                   id="name" 
                   name="name" 
                   defaultValue={user.name || ""} 
-                  className="bg-black/20 border-[#2E2F2F]" 
+                  className="bg-black/20 border-[#2E2F2F] h-11 md:h-10 text-base md:text-sm" 
                 />
               </div>
               
@@ -114,13 +114,13 @@ export function ProfileView({ user }: ProfileViewProps) {
                   onInput={(e) => {
                     e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, "")
                   }}
-                  className="bg-black/20 border-[#2E2F2F]" 
+                  className="bg-black/20 border-[#2E2F2F] h-11 md:h-10 text-base md:text-sm" 
                 />
               </div>
             </div>
 
             <div className="flex justify-end">
-              <Button disabled={infoPending} type="submit">
+              <Button disabled={infoPending} type="submit" className="w-full md:w-auto h-12 md:h-10">
                 {infoPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
                 Save Details
               </Button>
@@ -149,7 +149,7 @@ export function ProfileView({ user }: ProfileViewProps) {
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   required
-                 className="bg-black/20 border-[#2E2F2F] pr-10"
+                 className="bg-black/20 border-[#2E2F2F] pr-10 h-11 md:h-10 text-base md:text-sm"
                 />
                 <button
                     type="button"
@@ -172,7 +172,7 @@ export function ProfileView({ user }: ProfileViewProps) {
                   type="password" 
                   placeholder="••••••••"
                   required
-                  className="bg-black/20 border-[#2E2F2F]" 
+                  className="bg-black/20 border-[#2E2F2F] h-11 md:h-10 text-base md:text-sm" 
                 />
               </div>
             </div>
@@ -182,7 +182,7 @@ export function ProfileView({ user }: ProfileViewProps) {
                 disabled={passPending} 
                 type="submit" 
                 variant="secondary" 
-                className="bg-orange-500/10 text-orange-500 hover:bg-orange-500/20 border-orange-500/20 border"
+                className="bg-orange-500/10 text-orange-500 hover:bg-orange-500/20 border-orange-500/20 border w-full md:w-auto h-12 md:h-10"
               >
                 {passPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Lock className="mr-2 h-4 w-4" />}
                 Update Password
