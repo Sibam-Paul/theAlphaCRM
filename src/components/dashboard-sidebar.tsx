@@ -193,7 +193,7 @@ export function DashboardSidebar({ userEmail, userRole, userName, userAvatar }: 
 
           <DropdownMenuContent 
               className={cn(
-                "w-59.5 bg-[#171717] border border-[#2E2F2F] shadow-none z-40 mb-3 rounded-b-xl rounded-t-none border-t-0 -mt-px",
+                "w-[239px] bg-[#171717] border border-[#2E2F2F] shadow-none z-40 mb-3 rounded-b-xl rounded-t-none border-t-0 -mt-px",
                 "overflow-hidden origin-top",
                 "data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=closed]:slide-out-to-top-2",
                 // Remove opacity-0, but allow pointer-events control

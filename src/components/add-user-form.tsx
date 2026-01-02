@@ -24,21 +24,12 @@ export function AddUserForm() {
     const result = await createUser(formData)
     setIsLoading(false)
 
-    if (result.success) {
-      // Capture the name/email for a better message
-      const name = formData.get("name") as string
-
-      // ✅ RICH SUCCESS TOAST
-      toast.success("User Created", {
-        description: `Account for ${name} has been successfully added to the CRM.`,
-      })
-
+   if (result.success) {
+      toast.success("User Created", { description: "Account successfully added." })
+      // 🧹 FIX: Only reset the form if the action succeeded
       form.reset()
     } else {
-
-      toast.error("Creation Failed", {
-        description: result.error,
-      })
+      toast.error("Creation Failed", { description: result.error })
     }
   }
 
@@ -82,29 +73,29 @@ export function AddUserForm() {
               placeholder="Mobile Number"
               required
               onInput={(e) => {
-                e.currentTarget.value = e.currentTarget.value.replace(/[^0-9]/g, "")
+                e.currentTarget.value = e.currentTarget.value.replace(/[^0-9+]/g, "")
               }}
               className="pl-3 h-11 md:h-9 text-base md:text-sm w-full border rounded-md bg-transparent outline-none border-[#373737] focus:ring-2 focus:ring-[#575757]"
             />
           </div>
 
           <div className="flex gap-7 items-center">
-          <select 
-            name="role" 
-            id="role" 
-            defaultValue="" 
-            required
-            className="flex-1 h-10 rounded-md border border-[#373737] bg-[#222223] px-4  py-2 text-sm text-white placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-          > 
-              <option value="" disabled>Select Role</option>
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-          </select>
+            <select 
+              name="role" 
+              id="role" 
+              defaultValue="" 
+              required
+              className="flex-1 h-10 rounded-md border border-[#373737] bg-[#222223] px-4  py-2 text-sm text-white placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            > 
+                <option value="" disabled>Select Role</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
 
-          <Button type="submit" disabled={isLoading} className="w-[50%] h-10 bg-white cursor-pointer text-black font-bold hover:bg-[#E5E5E5]">
-            {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <><UserPlus className="mr-2 h-4 w-4"/> Create Account</>}
-          </Button>
-        </div>
+            <Button type="submit" disabled={isLoading} className="w-[50%] h-10 bg-white cursor-pointer text-black font-bold hover:bg-[#E5E5E5]">
+              {isLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <><UserPlus className="mr-2 h-4 w-4"/> Create Account</>}
+            </Button>
+          </div>
         </form>
       </CardContent>
     </Card >

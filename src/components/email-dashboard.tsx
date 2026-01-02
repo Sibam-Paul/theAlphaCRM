@@ -227,7 +227,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                 Broadcast
             </button>
         </div>
-        <div className="text-[10px] tracking-widest text-muted-foreground font-mono uppercase hidden xs:block">
+        <div className="text-[10px] tracking-widest text-muted-foreground font-mono uppercase  xs:block">
             New Message
         </div>
     </div>

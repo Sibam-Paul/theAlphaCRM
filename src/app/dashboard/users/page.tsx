@@ -6,6 +6,8 @@ import { eq } from "drizzle-orm"
 import { AddUserForm } from "@/components/add-user-form"
 import { UserList } from "@/components/user-list"
 import { fetchUsers } from "@/app/action/profile-actions"
+// import {adduser } from lucide-react
+
 
 export default async function AdminUsersPage() {
   const supabase = await createClient()
@@ -17,10 +19,13 @@ export default async function AdminUsersPage() {
   }
 
   
-  const dbUser = await db.query.users.findFirst({
-    where: eq(users.id, user.id),
-    columns: { role: true }
-  })
+  const [dbUser, usersData] = await Promise.all([
+    db.query.users.findFirst({
+        where: eq(users.id, user.id),
+        columns: { role: true }
+    }),
+    fetchUsers(0, "", user.id)
+  ])
 
   if (dbUser?.role !== 'admin') redirect("/dashboard")
 
@@ -41,9 +46,14 @@ export default async function AdminUsersPage() {
           
         </div>
         
-        <div className="min-h-0">
-          {/* Pass the data fetched via the action */}
-          <UserList initialUsers={initialUsers} currentUserId={user.id} />
+        <div className="min-h-0 flex flex-col">
+          {initialUsers.length > 0 ? (
+             <UserList initialUsers={initialUsers} currentUserId={user.id} />
+          ) : (
+             <div className="flex flex-col items-center justify-center h-64 border border-dashed border-[#2E2F2F] rounded-xl bg-[#171717]/50 text-muted-foreground">
+                <p>No other users found.</p>
+             </div>
+          )}
         </div>
       </div>
     </div>

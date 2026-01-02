@@ -23,11 +23,31 @@ export default async function DashboardLayout({ children }: { children: React.Re
     } 
   })
 
-  if (!dbUser) redirect('/auth/login?error=account_not_found')
-  
+  if (!dbUser) {
+      return (
+        <div className="flex flex-col h-dvh w-full items-center justify-center bg-black text-white p-4">
+          <div className="max-w-md text-center space-y-4 border border-[#2E2F2F] bg-[#171717] p-8 rounded-xl">
+            <h1 className="text-xl font-bold text-red-500">Account Error</h1>
+            <p className="text-muted-foreground text-sm">
+              Your account is authenticated but missing from the database.
+            </p>
+            <form action={async () => {
+              "use server"
+              const sb = await createClient()
+              await sb.auth.signOut()
+              redirect('/')
+            }}>
+              <button className="bg-white text-black px-4 py-2 rounded-full font-bold hover:bg-gray-200">
+                Sign Out
+              </button>
+            </form>
+          </div>
+        </div>
+      )
+    }  
 
   return (
-    <div className="flex h-screen bg-black overflow-hidden">
+    <div className="flex h-dvh bg-black overflow-hidden">
       {/* Mobile Navigation  (WPA)*/} 
       <MobileNav 
         userEmail={user.email!} 

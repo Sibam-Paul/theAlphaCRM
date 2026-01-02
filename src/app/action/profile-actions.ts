@@ -19,7 +19,8 @@ const ProfileSchema = z.object({
 export async function updateProfileInfo(formData: FormData) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  
+
+
   if (!user) return { success: false, error: "Unauthorized" }
 
   const dbUser = await db.query.users.findFirst({
@@ -103,13 +104,14 @@ export async function changePassword(formData: FormData) {
 export async function updateAvatar(url: string) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
+    const ALLOWED_DOMAIN = process.env.NEXT_PUBLIC_SUPABASE_URL || "supabase.co";
+
 
   if (!user) return { success: false, error: "Unauthorized" }
 
   
-  if (!url.startsWith("http://") && !url.startsWith("https://")) {
-    
-    return { success: false, error: "Invalid image URL. Must start with http:// or https://" }
+ if (!url.startsWith(ALLOWED_DOMAIN) && !url.includes("avatar.vercel.sh")) {
+     return { success: false, error: "Invalid image source. Only system uploads allowed." }
   }
 
   try {
@@ -117,12 +119,14 @@ export async function updateAvatar(url: string) {
       .set({ avatarUrl: url })
       .where(eq(users.id, user.id))
 
-    revalidatePath('/', 'layout')
+    // ⚡ FIX: Don't revalidate '/', only the dashboard
+    revalidatePath('/dashboard/profile')
+    revalidatePath('/dashboard') 
     return { success: true }
   } catch (error) {
-    console.error("Profile Update Error:", error)  
-    return { success: false, error: "Failed to update profile." }
+    // ... error handling
   }
+
 }
 
 
