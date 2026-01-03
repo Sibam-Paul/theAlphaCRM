@@ -158,7 +158,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                       {selectedEmail.sender_name || "System Notification"}
                     </span>
                     <span className="text-xs text-muted-foreground truncate">
-                      &lt;{selectedEmail.prefix}@{process.env.NEXT_PUBLIC_MAILEROO_DOMAIN || 'domain.com'}&gt;
+                      &lt;{selectedEmail.prefix}@{process.env.NEXT_PUBLIC_MAILEROO_DOMAIN }&gt;
                     </span>
                   </div>
                   <div className="text-sm text-muted-foreground">
@@ -262,7 +262,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                             placeholder="noreply"
                             className="bg-transparent border rounded-xl pl-1 border-[#444444] text-sm  focus:text-foreground focus:outline-none w-20 "
                         />
-                        <span className="text-muted-foreground text-sm">@crm.tao</span>
+                      <span className="text-muted-foreground text-sm">@{process.env.NEXT_PUBLIC_MAILEROO_DOMAIN}</span>
                     </div>
                     
                     <span className="text-muted-foreground hidden md:inline">&gt;</span>
@@ -442,11 +442,13 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                                     <span className="font-bold text-lg text-foreground">
                                       {selectedEmail.sender_name || "System Notification"}
                                     </span>
-                                    <span className="text-xs text-muted-foreground">&lt;{selectedEmail.prefix}@{process.env.NEXT_PUBLIC_MAILEROO_DOMAIN || 'domain.com'}&gt;</span>
+                                    <span className="text-xs text-muted-foreground">&lt;{selectedEmail.prefix}@{process.env.NEXT_PUBLIC_MAILEROO_DOMAIN }&gt;</span>
                                 </div>
                                 <div className="text-xs text-muted-foreground">
                                     to <span className="text-foreground">{selectedEmail.recipients}</span>
                                 </div>
+
+                        
                             </div>
                         </div>
                         <div className="text-xs text-muted-foreground">
