@@ -36,11 +36,11 @@ export async function sendEmail(prevState: EmailState, formData: FormData): Prom
   //    return { success: false, error: "Unauthorized: Admins only.", message: "" }
   // }
   // Environment check
-  if (!process.env.MAILEROO_DOMAIN || !process.env.MAILEROO_API_KEY) {
+  if (!process.env.NEXT_PUBLIC_MAILEROO_DOMAIN || !process.env.MAILEROO_API_KEY) {
      return { success: false, error: "Server configuration missing (Env)", message: "" }
   }
 
-  const fromAddress = `${fromPrefix}@${process.env.MAILEROO_DOMAIN}`
+  const fromAddress = `${fromPrefix}@${process.env.NEXT_PUBLIC_MAILEROO_DOMAIN}`
   // Use the custom Title if provided, otherwise fallback to the prefix
   const displayName = title || fromPrefix 
 
