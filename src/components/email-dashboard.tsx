@@ -161,10 +161,10 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                       &lt;{selectedEmail.prefix}@{process.env.NEXT_PUBLIC_MAILEROO_DOMAIN || 'domain.com'}&gt;
                     </span>
                   </div>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-sm text-muted-foreground">
                     to <span className="text-foreground truncate">{selectedEmail.recipients}</span>
                   </div>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-sm text-muted-foreground">
                     {selectedEmail.sentAt ? new Date(selectedEmail.sentAt).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }) : ''}
                   </div>
                 </div>
@@ -210,7 +210,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                 type="button"
                 onClick={() => setEmailType("direct")}
                 className={cn(
-                    "px-3 py-1 text-xs font-medium rounded-md transition-all",
+                    "px-3 py-1 text-sm font-medium rounded-md transition-all",
                     emailType === "direct" ? "bg-[#2E2F2F] text-white shadow-sm" : "text-muted-foreground hover:text-white"
                 )}
             >
@@ -220,7 +220,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
                 type="button"
                 onClick={() => setEmailType("broadcast")}
                 className={cn(
-                    "px-3 py-1 text-xs font-medium rounded-md transition-all",
+                    "px-3 py-1 text-sm font-medium rounded-md transition-all",
                     emailType === "broadcast" ? "bg-[#2E2F2F] text-white shadow-sm" : "text-muted-foreground hover:text-white"
                 )}
             >
@@ -240,7 +240,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
             
             {/* ROW 1: FROM (Sender Name + Email) - WRAPS on Mobile */}
             <div className="flex flex-col md:flex-row md:items-center py-2 border-b border-[#1F1F1F] gap-2 md:gap-0">
-                <span className="text-xs font-semibold text-muted-foreground w-16 shrink-0 pt-2 md:pt-0">From:</span>
+                <span className="text-sm font-semibold text-muted-foreground w-16 shrink-0 pt-2 md:pt-0">From:</span>
                 
                 <div className="flex flex-wrap items-center gap-1 w-full">
                     {/* Input 1: Sender Name */}
@@ -271,7 +271,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
 
             {/* ROW 2: TO */}
             <div className="flex items-center py-2 border-b border-[#1F1F1F]">
-                <span className="text-xs font-semibold text-muted-foreground w-16 shrink-0">To:</span>
+                <span className="text-sm font-semibold text-muted-foreground w-16 shrink-0">To:</span>
                 {/* Input 3: Recipient */}
                 <input 
                     name="to" 
@@ -284,7 +284,7 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
 
             {/* ROW 3: SUBJECT */}
             <div className="flex items-center py-2">
-                  <span className="text-xs font-semibold text-muted-foreground w-16 shrink-0">Subject:</span>
+                  <span className="text-sm font-semibold text-muted-foreground w-16 shrink-0">Subject:</span>
                   {/* Input 4: Subject */}
                   <input 
                     name="subject" 
@@ -319,9 +319,9 @@ export default function EmailDashboard({ logs }: { logs: EmailLog[] }) {
             <Button 
                 type="submit" 
                 disabled={isPending}
-                className="bg-white text-black hover:bg-gray-200 font-bold px-4 md:px-6 h-9 rounded-full transition-all active:scale-95 text-xs md:text-sm"
+                className="bg-white text-black hover:bg-gray-200 font-bold px-4 md:px-6 h-9 rounded-full transition-all active:scale-95 text-sm md:text-sm"
             >
-                {isPending ? "Sending..." : "Send"} <Send className="w-3 h-3 ml-2" />
+                {isPending ? "Sending..." : "Send"} <Send className="w-2 h-3" />
             </Button>
         </div>
     </form>
