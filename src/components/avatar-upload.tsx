@@ -46,11 +46,11 @@ export function AvatarUpload({ userId, currentAvatarUrl, userEmail }: AvatarUplo
       // We previously put it in "@/app/action/profile-actions"
       const result = await updateAvatar(publicUrl)
       
-      if (result.success) {
+      if (result?.success) {
         setPreview(publicUrl)
         toast.success("Profile Photo Updated")
       } else {
-        throw new Error(result.error)
+        throw new Error(result?.error)
       }
 
     } catch (error: any) {
