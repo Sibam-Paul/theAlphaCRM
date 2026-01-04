@@ -46,7 +46,7 @@ export default async function AdminUsersPage() {
           
         </div>
         
-        <div className="min-h-0 flex flex-col">
+        <div className=" flex flex-col">
           {initialUsers.length > 0 ? (
              <UserList initialUsers={initialUsers} currentUserId={user.id} />
           ) : (
