@@ -132,7 +132,7 @@ export function UserList({ initialUsers, currentUserId }: { initialUsers: CRMUse
   }
 
   return (
-    <div className="flex flex-col h-[60vh] bg-[#171717] border border-[#2E2F2F] rounded-xl">
+    <div className="flex flex-col h-[60vh] mb-5 bg-[#171717] border border-[#2E2F2F] rounded-xl">
       <div className="p-4 border-b border-[#2E2F2F] space-y-4">
         <h3 className="text-lg font-semibold text-foreground">Active Members</h3>
         <div className="relative">
@@ -147,7 +147,7 @@ export function UserList({ initialUsers, currentUserId }: { initialUsers: CRMUse
       </div>
 
       <ScrollArea className="flex-1 overflow-y-auto">
-        <div className="p-2 space-y-2 ">
+        <div className="p-2 space-y-2 mb-5">
           {/* Changed filteredUsers to users to support pagination */}
           {users.map((user) => {
             const isExpanded = expandedUserId === user.id
